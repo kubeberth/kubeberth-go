@@ -2,7 +2,7 @@ module github.com/kubeberth/kubeberth-go
 
 go 1.17
 
-require github.com/kubeberth/berth-apiserver v0.5.3
+require github.com/kubeberth/berth-apiserver v0.5.4
 
 require (
 	github.com/PuerkitoBio/purell v1.1.1 // indirect
