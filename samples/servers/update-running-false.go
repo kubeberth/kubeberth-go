@@ -19,9 +19,9 @@ func main() {
 
 	server := &kubeberth.Server{
 		Name: "test",
-		Running: "true",
-		CPU: "2",
-		Memory: "2Gi",
+		Running: "false",
+		CPU: "1",
+		Memory: "1Gi",
 		MACAddress: "52:42:00:00:00:00",
 		HostName: "test",
 		Disk: &kubeberth.AttachedDisk{
