@@ -2,7 +2,7 @@ module github.com/kubeberth/kubeberth-go
 
 go 1.17
 
-require github.com/kubeberth/berth-apiserver v0.5.4
+require github.com/kubeberth/kubeberth-apiserver v0.6.0
 
 require (
 	github.com/PuerkitoBio/purell v1.1.1 // indirect
@@ -24,7 +24,7 @@ require (
 	github.com/google/gofuzz v1.1.0 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
-	github.com/kubeberth/berth-operator v0.5.2 // indirect
+	github.com/kubeberth/kubeberth-operator v0.6.0 // indirect
 	github.com/leodido/go-urn v1.2.0 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
 	github.com/mattn/go-isatty v0.0.12 // indirect
