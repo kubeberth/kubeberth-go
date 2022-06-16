@@ -1,9 +1,9 @@
 package kubeberth
 
 import (
-	"github.com/kubeberth/berth-apiserver/pkg/berth"
-	"github.com/kubeberth/berth-apiserver/pkg/disks"
-	"github.com/kubeberth/berth-apiserver/pkg/servers"
+	"github.com/kubeberth/kubeberth-apiserver/pkg/berth"
+	"github.com/kubeberth/kubeberth-apiserver/pkg/disks"
+	"github.com/kubeberth/kubeberth-apiserver/pkg/servers"
 )
 
 type AttachedArchive    = berth.AttachedArchive

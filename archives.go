@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"path"
 
-	"github.com/kubeberth/berth-apiserver/pkg/archives"
+	"github.com/kubeberth/kubeberth-apiserver/pkg/archives"
 )
 
 const (

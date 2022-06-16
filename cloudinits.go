@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"path"
 
-	"github.com/kubeberth/berth-apiserver/pkg/cloudinits"
+	"github.com/kubeberth/kubeberth-apiserver/pkg/cloudinits"
 )
 
 const (
