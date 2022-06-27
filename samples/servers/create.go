@@ -19,11 +19,12 @@ func main() {
 
 	server := &kubeberth.Server{
 		Name: "test",
-		Running: "true",
-		CPU: "1",
-		Memory: "1Gi",
-		MACAddress: "52:42:00:00:00:00",
-		HostName: "test",
+		Running: true,
+		CPU: "2",
+		Memory: "2Gi",
+		MACAddress: "52:42:00:4f:8a:2b",
+		Hostname: "test",
+		Hosting: "node-1.k8s.home.arpa",
 		Disk: &kubeberth.AttachedDisk{
 			Name: "test",
 		},

@@ -17,24 +17,30 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	cloudinit := &kubeberth.CloudInit{
+	server := &kubeberth.Server{
 		Name: "test",
-		UserData: `#cloud-config
-timezone: Asia/Tokyo
-ssh_pwauth: True
-password: UBUNTU
-disable_root: true
-`,
+		Running: true,
+		CPU: "2",
+		Memory: "2Gi",
+		MACAddress: "52:42:00:4f:8a:2b",
+		Hostname: "test",
+		Hosting: "node-1.k8s.home.arpa",
+		Disk: &kubeberth.AttachedDisk{
+			Name: "test",
+		},
+		CloudInit: &kubeberth.AttachedCloudInit{
+			Name: "test",
+		},
 	}
 
-	cloudinit, err := kubeberthClient.UpdateCloudInit(ctx, "test", cloudinit)
+	server, err := kubeberthClient.UpdateServer(ctx, "test", server)
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	b, err := json.Marshal(cloudinit)
+	b, err := json.Marshal(server)
 	if err != nil {
 		fmt.Println(err)
 	}

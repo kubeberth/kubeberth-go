@@ -19,7 +19,7 @@ func main() {
 
 	archive := &kubeberth.Archive{
 		Name: "test",
-		URL: "http://minio.home.arpa:9000/kubevirt/images/ubuntu-18.04-server-cloudimg-arm64.img",
+		URL: "http://minio.home.arpa:9000/kubevirt/images/ubuntu-20.04-server-cloudimg-arm64.img",
 	}
 
 	archive, err := kubeberthClient.UpdateArchive(ctx, "test", archive)

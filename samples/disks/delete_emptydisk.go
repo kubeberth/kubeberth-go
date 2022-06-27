@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"time"
 
@@ -17,26 +16,13 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	cloudinit := &kubeberth.CloudInit{
-		Name: "test",
-		UserData: `#cloud-config
-timezone: Asia/Tokyo
-ssh_pwauth: True
-password: UBUNTU
-disable_root: true
-`,
-	}
+	diskName := "test-emptydisk"
+	ok, err := kubeberthClient.DeleteDisk(ctx, diskName)
 
-	cloudinit, err := kubeberthClient.UpdateCloudInit(ctx, "test", cloudinit)
-
-	if err != nil {
+	if !ok {
 		fmt.Println(err)
 		return
 	}
 
-	b, err := json.Marshal(cloudinit)
-	if err != nil {
-		fmt.Println(err)
-	}
-	fmt.Println(string(b))
+	fmt.Println("success")
 }

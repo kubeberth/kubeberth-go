@@ -17,24 +17,19 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	cloudinit := &kubeberth.CloudInit{
-		Name: "test",
-		UserData: `#cloud-config
-timezone: Asia/Tokyo
-ssh_pwauth: True
-password: UBUNTU
-disable_root: true
-`,
+	disk := &kubeberth.Disk{
+		Name: "test-emptydisk-nosource",
+		Size: "16Gi",
 	}
 
-	cloudinit, err := kubeberthClient.UpdateCloudInit(ctx, "test", cloudinit)
+	disk, err := kubeberthClient.CreateDisk(ctx, disk)
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	b, err := json.Marshal(cloudinit)
+	b, err := json.Marshal(disk)
 	if err != nil {
 		fmt.Println(err)
 	}

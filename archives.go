@@ -7,15 +7,11 @@ import (
 	"errors"
 	"net/http"
 	"path"
-
-	"github.com/kubeberth/kubeberth-apiserver/pkg/archives"
 )
 
 const (
 	APIPathArchives = "archives"
 )
-
-type Archive archives.Archive
 
 func (c *Client) GetAllArchives(ctx context.Context) ([]Archive, error) {
 	req, err := c.newRequest(ctx, http.MethodGet, APIPathArchives, nil)
