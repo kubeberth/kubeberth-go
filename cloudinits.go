@@ -7,15 +7,11 @@ import (
 	"errors"
 	"net/http"
 	"path"
-
-	"github.com/kubeberth/kubeberth-apiserver/pkg/cloudinits"
 )
 
 const (
 	APIPathCloudInits = "cloudinits"
 )
-
-type CloudInit cloudinits.CloudInit
 
 func (c *Client) GetAllCloudInits(ctx context.Context) ([]CloudInit, error) {
 	req, err := c.newRequest(ctx, http.MethodGet, APIPathCloudInits, nil)

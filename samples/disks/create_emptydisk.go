@@ -17,29 +17,20 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	server := &kubeberth.Server{
-		Name: "test",
-		Running: "true",
-		CPU: "1",
-		Memory: "1Gi",
-		MACAddress: "52:42:00:00:00:00",
-		HostName: "test",
-		Disk: &kubeberth.AttachedDisk{
-			Name: "test",
-		},
-		CloudInit: &kubeberth.AttachedCloudInit{
-			Name: "test",
-		},
+	disk := &kubeberth.Disk{
+		Name: "test-emptydisk",
+		Size: "16Gi",
+		Source: &kubeberth.AttachedSource{},
 	}
 
-	server, err := kubeberthClient.UpdateServer(ctx, "test", server)
+	disk, err := kubeberthClient.CreateDisk(ctx, disk)
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	b, err := json.Marshal(server)
+	b, err := json.Marshal(disk)
 	if err != nil {
 		fmt.Println(err)
 	}
