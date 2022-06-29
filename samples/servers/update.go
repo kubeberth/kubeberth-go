@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"time"
 
+	"k8s.io/apimachinery/pkg/api/resource"
+
 	"github.com/kubeberth/kubeberth-go"
 )
 
@@ -17,11 +19,13 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
+	cpu    := resource.MustParse("2")
+	memory := resource.MustParse("2Gi")
 	server := &kubeberth.Server{
 		Name: "test",
 		Running: false,
-		CPU: "2",
-		Memory: "2Gi",
+		CPU: &cpu,
+		Memory: &memory,
 		MACAddress: "52:42:00:4f:8a:2b",
 		Hostname: "test",
 		Hosting: "node-1.k8s.home.arpa",
