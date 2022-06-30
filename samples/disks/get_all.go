@@ -24,12 +24,10 @@ func main() {
 		return
 	}
 
-	for num, disk := range disks {
-		fmt.Printf("[#%d] ", num+1)
-		b, err := json.Marshal(disk)
-		if err != nil {
-			fmt.Println(err)
-		}
-		fmt.Println(string(b))
+	b, err := json.Marshal(disks)
+	if err != nil {
+		fmt.Println(err)
 	}
+
+	fmt.Println(string(b))
 }

@@ -24,12 +24,10 @@ func main() {
 		return
 	}
 
-	for num, archive := range archives {
-		fmt.Printf("[#%d] ", num+1)
-		b, err := json.Marshal(archive)
-		if err != nil {
-			fmt.Println(err)
-		}
-		fmt.Println(string(b))
+	b, err := json.Marshal(archives)
+	if err != nil {
+		fmt.Println(err)
 	}
+
+	fmt.Println(string(b))
 }
