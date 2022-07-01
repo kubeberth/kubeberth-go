@@ -18,8 +18,8 @@ func main() {
 	defer cancel()
 
 	archive := &kubeberth.Archive{
-		Name: "test",
-		URL: "http://minio.home.arpa:9000/kubevirt/images/ubuntu-20.04-server-cloudimg-arm64.img",
+		Name:       "test",
+		Repository: "https://minio.home.arpa:9000/kubevirt/images/ubuntu-20.04-server-cloudimg-arm64.img",
 	}
 
 	archive, err := kubeberthClient.UpdateArchive(ctx, "test", archive)
