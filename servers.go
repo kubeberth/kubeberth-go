@@ -13,7 +13,7 @@ const (
 	APIPathServers = "servers"
 )
 
-func (c *Client) GetAllServers(ctx context.Context) ([]Server, error) {
+func (c *Client) GetAllServers(ctx context.Context) ([]ResponseServer, error) {
 	req, err := c.newRequest(ctx, http.MethodGet, APIPathServers, nil)
 	if err != nil {
 		return nil, err
@@ -28,7 +28,7 @@ func (c *Client) GetAllServers(ctx context.Context) ([]Server, error) {
 		return nil, errors.New(res.Status)
 	}
 
-	var ret []Server
+	var ret []ResponseServer
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}
@@ -36,7 +36,7 @@ func (c *Client) GetAllServers(ctx context.Context) ([]Server, error) {
 	return ret, nil
 }
 
-func (c *Client) GetServer(ctx context.Context, name string) (*Server, error) {
+func (c *Client) GetServer(ctx context.Context, name string) (*ResponseServer, error) {
 	req, err := c.newRequest(ctx, http.MethodGet, path.Join(APIPathServers, name), nil)
 	if err != nil {
 		return nil, err
@@ -51,7 +51,7 @@ func (c *Client) GetServer(ctx context.Context, name string) (*Server, error) {
 		return nil, errors.New(res.Status)
 	}
 
-	var ret Server
+	var ret ResponseServer
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}
@@ -59,7 +59,7 @@ func (c *Client) GetServer(ctx context.Context, name string) (*Server, error) {
 	return &ret, nil
 }
 
-func (c *Client) CreateServer(ctx context.Context, server *Server) (*Server, error) {
+func (c *Client) CreateServer(ctx context.Context, server *RequestServer) (*ResponseServer, error) {
 	b, err := json.Marshal(server)
 	if err != nil {
 		return nil, err
@@ -79,7 +79,7 @@ func (c *Client) CreateServer(ctx context.Context, server *Server) (*Server, err
 		return nil, errors.New(res.Status)
 	}
 
-	var ret Server
+	var ret ResponseServer
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (c *Client) CreateServer(ctx context.Context, server *Server) (*Server, err
 	return &ret, nil
 }
 
-func (c *Client) UpdateServer(ctx context.Context, name string, server *Server) (*Server, error) {
+func (c *Client) UpdateServer(ctx context.Context, name string, server *RequestServer) (*ResponseServer, error) {
 	b, err := json.Marshal(server)
 	if err != nil {
 		return nil, err
@@ -107,7 +107,7 @@ func (c *Client) UpdateServer(ctx context.Context, name string, server *Server) 
 		return nil, errors.New(res.Status)
 	}
 
-	var ret Server
+	var ret ResponseServer
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}

@@ -24,12 +24,10 @@ func main() {
 		return
 	}
 
-	for num, cloudinit := range cloudinits {
-		fmt.Printf("[#%d] ", num+1)
-		b, err := json.Marshal(cloudinit)
-		if err != nil {
-			fmt.Println(err)
-		}
-		fmt.Println(string(b))
+	b, err := json.Marshal(cloudinits)
+	if err != nil {
+		fmt.Println(err)
 	}
+
+	fmt.Println(string(b))
 }

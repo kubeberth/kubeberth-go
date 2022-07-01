@@ -21,7 +21,7 @@ func main() {
 
 	cpu    := resource.MustParse("2")
 	memory := resource.MustParse("2Gi")
-	server := &kubeberth.Server{
+	requestServer := &kubeberth.RequestServer{
 		Name: "test",
 		Running: true,
 		CPU: &cpu,
@@ -37,14 +37,14 @@ func main() {
 		},
 	}
 
-	server, err := kubeberthClient.CreateServer(ctx, server)
+	responseServer, err := kubeberthClient.CreateServer(ctx, requestServer)
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	b, err := json.Marshal(server)
+	b, err := json.Marshal(responseServer)
 	if err != nil {
 		fmt.Println(err)
 	}

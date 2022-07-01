@@ -13,7 +13,7 @@ const (
 	APIPathDisks = "disks"
 )
 
-func (c *Client) GetAllDisks(ctx context.Context) ([]Disk, error) {
+func (c *Client) GetAllDisks(ctx context.Context) ([]ResponseDisk, error) {
 	req, err := c.newRequest(ctx, http.MethodGet, APIPathDisks, nil)
 	if err != nil {
 		return nil, err
@@ -28,7 +28,7 @@ func (c *Client) GetAllDisks(ctx context.Context) ([]Disk, error) {
 		return nil, errors.New(res.Status)
 	}
 
-	var ret []Disk
+	var ret []ResponseDisk
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}
@@ -36,7 +36,7 @@ func (c *Client) GetAllDisks(ctx context.Context) ([]Disk, error) {
 	return ret, nil
 }
 
-func (c *Client) GetDisk(ctx context.Context, name string) (*Disk, error) {
+func (c *Client) GetDisk(ctx context.Context, name string) (*ResponseDisk, error) {
 	req, err := c.newRequest(ctx, http.MethodGet, path.Join(APIPathDisks, name), nil)
 	if err != nil {
 		return nil, err
@@ -51,7 +51,7 @@ func (c *Client) GetDisk(ctx context.Context, name string) (*Disk, error) {
 		return nil, errors.New(res.Status)
 	}
 
-	var ret Disk
+	var ret ResponseDisk
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}
@@ -59,7 +59,7 @@ func (c *Client) GetDisk(ctx context.Context, name string) (*Disk, error) {
 	return &ret, nil
 }
 
-func (c *Client) CreateDisk(ctx context.Context, disk *Disk) (*Disk, error) {
+func (c *Client) CreateDisk(ctx context.Context, disk *RequestDisk) (*ResponseDisk, error) {
 	b, err := json.Marshal(disk)
 	if err != nil {
 		return nil, err
@@ -79,7 +79,7 @@ func (c *Client) CreateDisk(ctx context.Context, disk *Disk) (*Disk, error) {
 		return nil, errors.New(res.Status)
 	}
 
-	var ret Disk
+	var ret ResponseDisk
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (c *Client) CreateDisk(ctx context.Context, disk *Disk) (*Disk, error) {
 	return &ret, nil
 }
 
-func (c *Client) UpdateDisk(ctx context.Context, name string, disk *Disk) (*Disk, error) {
+func (c *Client) UpdateDisk(ctx context.Context, name string, disk *RequestDisk) (*ResponseDisk, error) {
 	b, err := json.Marshal(disk)
 	if err != nil {
 		return nil, err
@@ -107,7 +107,7 @@ func (c *Client) UpdateDisk(ctx context.Context, name string, disk *Disk) (*Disk
 		return nil, errors.New(res.Status)
 	}
 
-	var ret Disk
+	var ret ResponseDisk
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}

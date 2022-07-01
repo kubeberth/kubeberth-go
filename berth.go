@@ -15,5 +15,7 @@ type AttachedSource    = berth.AttachedSource
 
 type Archive           = archives.Archive
 type CloudInit         = cloudinits.CloudInit
-type Disk              = disks.Disk
-type Server            = servers.Server
+type ResponseDisk      = disks.ResponseDisk
+type RequestDisk       = disks.RequestDisk
+type ResponseServer    = servers.ResponseServer
+type RequestServer     = servers.RequestServer

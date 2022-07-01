@@ -24,12 +24,10 @@ func main() {
 		return
 	}
 
-	for num, server := range servers {
-		fmt.Printf("[#%d] ", num+1)
-		b, err := json.Marshal(server)
-		if err != nil {
-			fmt.Println(err)
-		}
-		fmt.Println(string(b))
+	b, err := json.Marshal(servers)
+	if err != nil {
+		fmt.Println(err)
 	}
+
+	fmt.Println(string(b))
 }
