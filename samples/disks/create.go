@@ -17,7 +17,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	disk := &kubeberth.Disk{
+	requestDisk := &kubeberth.RequestDisk{
 		Name: "test",
 		Size: "16Gi",
 		Source: &kubeberth.AttachedSource{
@@ -27,14 +27,14 @@ func main() {
 		},
 	}
 
-	disk, err := kubeberthClient.CreateDisk(ctx, disk)
+	responseDisk, err := kubeberthClient.CreateDisk(ctx, requestDisk)
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	b, err := json.Marshal(disk)
+	b, err := json.Marshal(responseDisk)
 	if err != nil {
 		fmt.Println(err)
 	}
