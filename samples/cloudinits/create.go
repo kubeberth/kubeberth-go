@@ -25,6 +25,11 @@ ssh_pwauth: True
 password: ubuntu
 chpasswd: { expire: False }
 disable_root: false
+package_update: true
+packages:
+- nginx
+runcmd:
+- hostname > /var/www/html/index.html
 `,
 	}
 

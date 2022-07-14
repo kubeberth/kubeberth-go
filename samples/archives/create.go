@@ -19,7 +19,7 @@ func main() {
 
 	archive := &kubeberth.Archive{
 		Name:       "test",
-		Repository: "http://minio.home.arpa:9000/kubevirt/images/ubuntu-20.04-server-cloudimg-arm64.img",
+		Repository: "http://minio.home.arpa:9000/kubeberth/images/ubuntu-20.04-server-cloudimg-arm64.img",
 	}
 
 	archive, err := kubeberthClient.CreateArchive(ctx, archive)

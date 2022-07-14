@@ -29,8 +29,8 @@ func main() {
 		MACAddress: "52:42:00:4f:8a:2b",
 		Hostname: "test",
 		Hosting: "node-1.k8s.home.arpa",
-		Disk: &kubeberth.AttachedDisk{
-			Name: "test",
+		Disks: []kubeberth.AttachedDisk{
+			kubeberth.AttachedDisk{ Name: "test" },
 		},
 		CloudInit: &kubeberth.AttachedCloudInit{
 			Name: "test",
