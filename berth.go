@@ -2,6 +2,7 @@ package kubeberth
 
 import (
 	"github.com/kubeberth/kubeberth-apiserver/pkg/berth"
+	"github.com/kubeberth/kubeberth-apiserver/pkg/isoimages"
 	"github.com/kubeberth/kubeberth-apiserver/pkg/archives"
 	"github.com/kubeberth/kubeberth-apiserver/pkg/cloudinits"
 	"github.com/kubeberth/kubeberth-apiserver/pkg/disks"
@@ -9,6 +10,7 @@ import (
 	"github.com/kubeberth/kubeberth-apiserver/pkg/loadbalancers"
 )
 
+type AttachedISOImage     = berth.AttachedISOImage
 type AttachedArchive      = berth.AttachedArchive
 type AttachedCloudInit    = berth.AttachedCloudInit
 type AttachedDisk         = berth.AttachedDisk
@@ -16,8 +18,12 @@ type AttachedSource       = berth.AttachedSource
 type Destination          = berth.Destination
 type Port                 = berth.Port
 
-type Archive              = archives.Archive
-type CloudInit            = cloudinits.CloudInit
+type ResponseISOImage     = isoimages.ResponseISOImage
+type RequestISOImage      = isoimages.RequestISOImage
+type ResponseArchive      = archives.Archive
+type RequestArchive       = archives.Archive
+type ResponseCloudInit    = cloudinits.CloudInit
+type RequestCloudInit     = cloudinits.CloudInit
 type ResponseDisk         = disks.ResponseDisk
 type RequestDisk          = disks.RequestDisk
 type ResponseServer       = servers.ResponseServer

@@ -17,30 +17,20 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	requestCloudInit := &kubeberth.RequestCloudInit{
-		Name: "test",
-		UserData: `#cloud-config
-timezone: Asia/Tokyo
-ssh_pwauth: True
-password: ubuntu
-chpasswd: { expire: False }
-disable_root: false
-package_update: true
-packages:
-- nginx
-runcmd:
-- hostname > /var/www/html/index.html
-`,
+	requestISOImage := &kubeberth.RequestISOImage{
+		Name:       "test",
+		Size:       "4Gi",
+		Repository: "http://minio.home.arpa:9000/kubeberth/images/ubuntu-20.04-server-cloudimg-arm64.img",
 	}
 
-	responseCloudInit, err := kubeberthClient.UpdateCloudInit(ctx, "test", requestCloudInit)
+	responseISOImage, err := kubeberthClient.CreateISOImage(ctx, requestISOImage)
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	b, err := json.Marshal(responseCloudInit)
+	b, err := json.Marshal(responseISOImage)
 	if err != nil {
 		fmt.Println(err)
 	}

@@ -17,19 +17,19 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	archive := &kubeberth.Archive{
+	requestArchive := &kubeberth.RequestArchive{
 		Name:       "test",
-		Repository: "https://minio.home.arpa:9000/kubevirt/images/ubuntu-20.04-server-cloudimg-arm64.img",
+		Repository: "http://minio.home.arpa:9000/kubeberth/images/ubuntu-20.04-server-cloudimg-arm64.img",
 	}
 
-	archive, err := kubeberthClient.UpdateArchive(ctx, "test", archive)
+	responseArchive, err := kubeberthClient.UpdateArchive(ctx, "test", requestArchive)
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	b, err := json.Marshal(archive)
+	b, err := json.Marshal(responseArchive)
 	if err != nil {
 		fmt.Println(err)
 	}
