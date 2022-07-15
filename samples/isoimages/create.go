@@ -19,8 +19,8 @@ func main() {
 
 	requestISOImage := &kubeberth.RequestISOImage{
 		Name:       "test",
-		Size:       "4Gi",
-		Repository: "http://minio.home.arpa:9000/kubeberth/images/ubuntu-20.04-server-cloudimg-arm64.img",
+		Size:       "2Gi",
+		Repository: "http://minio.home.arpa:9000/kubeberth/images/ubuntu-20.04.4-live-server-arm64.iso",
 	}
 
 	responseISOImage, err := kubeberthClient.CreateISOImage(ctx, requestISOImage)
