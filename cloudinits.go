@@ -13,7 +13,7 @@ const (
 	APIPathCloudInits = "cloudinits"
 )
 
-func (c *Client) GetAllCloudInits(ctx context.Context) ([]CloudInit, error) {
+func (c *Client) GetAllCloudInits(ctx context.Context) ([]ResponseCloudInit, error) {
 	req, err := c.newRequest(ctx, http.MethodGet, APIPathCloudInits, nil)
 	if err != nil {
 		return nil, err
@@ -28,7 +28,7 @@ func (c *Client) GetAllCloudInits(ctx context.Context) ([]CloudInit, error) {
 		return nil, errors.New(res.Status)
 	}
 
-	var ret []CloudInit
+	var ret []ResponseCloudInit
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}
@@ -36,7 +36,7 @@ func (c *Client) GetAllCloudInits(ctx context.Context) ([]CloudInit, error) {
 	return ret, nil
 }
 
-func (c *Client) GetCloudInit(ctx context.Context, name string) (*CloudInit, error) {
+func (c *Client) GetCloudInit(ctx context.Context, name string) (*ResponseCloudInit, error) {
 	req, err := c.newRequest(ctx, http.MethodGet, path.Join(APIPathCloudInits, name), nil)
 	if err != nil {
 		return nil, err
@@ -51,7 +51,7 @@ func (c *Client) GetCloudInit(ctx context.Context, name string) (*CloudInit, err
 		return nil, errors.New(res.Status)
 	}
 
-	var ret CloudInit
+	var ret ResponseCloudInit
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}
@@ -59,7 +59,7 @@ func (c *Client) GetCloudInit(ctx context.Context, name string) (*CloudInit, err
 	return &ret, nil
 }
 
-func (c *Client) CreateCloudInit(ctx context.Context, cloudinit *CloudInit) (*CloudInit, error) {
+func (c *Client) CreateCloudInit(ctx context.Context, cloudinit *RequestCloudInit) (*ResponseCloudInit, error) {
 	b, err := json.Marshal(cloudinit)
 	if err != nil {
 		return nil, err
@@ -79,7 +79,7 @@ func (c *Client) CreateCloudInit(ctx context.Context, cloudinit *CloudInit) (*Cl
 		return nil, errors.New(res.Status)
 	}
 
-	var ret CloudInit
+	var ret ResponseCloudInit
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (c *Client) CreateCloudInit(ctx context.Context, cloudinit *CloudInit) (*Cl
 	return &ret, nil
 }
 
-func (c *Client) UpdateCloudInit(ctx context.Context, name string, cloudinit *CloudInit) (*CloudInit, error) {
+func (c *Client) UpdateCloudInit(ctx context.Context, name string, cloudinit *RequestCloudInit) (*ResponseCloudInit, error) {
 	b, err := json.Marshal(cloudinit)
 	if err != nil {
 		return nil, err
@@ -107,7 +107,7 @@ func (c *Client) UpdateCloudInit(ctx context.Context, name string, cloudinit *Cl
 		return nil, errors.New(res.Status)
 	}
 
-	var ret CloudInit
+	var ret ResponseCloudInit
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}

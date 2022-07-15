@@ -20,8 +20,10 @@ type Port                 = berth.Port
 
 type ResponseISOImage     = isoimages.ResponseISOImage
 type RequestISOImage      = isoimages.RequestISOImage
-type Archive              = archives.Archive
-type CloudInit            = cloudinits.CloudInit
+type ResponseArchive      = archives.Archive
+type RequestArchive       = archives.Archive
+type ResponseCloudInit    = cloudinits.CloudInit
+type RequestCloudInit     = cloudinits.CloudInit
 type ResponseDisk         = disks.ResponseDisk
 type RequestDisk          = disks.RequestDisk
 type ResponseServer       = servers.ResponseServer

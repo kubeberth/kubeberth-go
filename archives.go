@@ -13,7 +13,7 @@ const (
 	APIPathArchives = "archives"
 )
 
-func (c *Client) GetAllArchives(ctx context.Context) ([]Archive, error) {
+func (c *Client) GetAllArchives(ctx context.Context) ([]ResponseArchive, error) {
 	req, err := c.newRequest(ctx, http.MethodGet, APIPathArchives, nil)
 	if err != nil {
 		return nil, err
@@ -28,7 +28,7 @@ func (c *Client) GetAllArchives(ctx context.Context) ([]Archive, error) {
 		return nil, errors.New(res.Status)
 	}
 
-	var ret []Archive
+	var ret []ResponseArchive
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}
@@ -36,7 +36,7 @@ func (c *Client) GetAllArchives(ctx context.Context) ([]Archive, error) {
 	return ret, nil
 }
 
-func (c *Client) GetArchive(ctx context.Context, name string) (*Archive, error) {
+func (c *Client) GetArchive(ctx context.Context, name string) (*ResponseArchive, error) {
 	req, err := c.newRequest(ctx, http.MethodGet, path.Join(APIPathArchives, name), nil)
 	if err != nil {
 		return nil, err
@@ -51,7 +51,7 @@ func (c *Client) GetArchive(ctx context.Context, name string) (*Archive, error) 
 		return nil, errors.New(res.Status)
 	}
 
-	var ret Archive
+	var ret ResponseArchive
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}
@@ -59,7 +59,7 @@ func (c *Client) GetArchive(ctx context.Context, name string) (*Archive, error) 
 	return &ret, nil
 }
 
-func (c *Client) CreateArchive(ctx context.Context, archive *Archive) (*Archive, error) {
+func (c *Client) CreateArchive(ctx context.Context, archive *RequestArchive) (*ResponseArchive, error) {
 	b, err := json.Marshal(archive)
 	if err != nil {
 		return nil, err
@@ -79,7 +79,7 @@ func (c *Client) CreateArchive(ctx context.Context, archive *Archive) (*Archive,
 		return nil, errors.New(res.Status)
 	}
 
-	var ret Archive
+	var ret ResponseArchive
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}
@@ -87,7 +87,7 @@ func (c *Client) CreateArchive(ctx context.Context, archive *Archive) (*Archive,
 	return &ret, nil
 }
 
-func (c *Client) UpdateArchive(ctx context.Context, name string, archive *Archive) (*Archive, error) {
+func (c *Client) UpdateArchive(ctx context.Context, name string, archive *RequestArchive) (*ResponseArchive, error) {
 	b, err := json.Marshal(archive)
 	if err != nil {
 		return nil, err
@@ -107,7 +107,7 @@ func (c *Client) UpdateArchive(ctx context.Context, name string, archive *Archiv
 		return nil, errors.New(res.Status)
 	}
 
-	var ret Archive
+	var ret ResponseArchive
 	if err := decodeBody(res, &ret); err != nil {
 		return nil, err
 	}

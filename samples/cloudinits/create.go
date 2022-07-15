@@ -17,7 +17,7 @@ func main() {
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
 	defer cancel()
 
-	cloudinit := &kubeberth.CloudInit{
+	requestCloudInit := &kubeberth.RequestCloudInit{
 		Name: "test",
 		UserData: `#cloud-config
 timezone: Asia/Tokyo
@@ -26,21 +26,17 @@ password: ubuntu
 chpasswd: { expire: False }
 disable_root: false
 package_update: true
-packages:
-- nginx
-runcmd:
-- hostname > /var/www/html/index.html
 `,
 	}
 
-	cloudinit, err := kubeberthClient.CreateCloudInit(ctx, cloudinit)
+	responseCloudInit, err := kubeberthClient.CreateCloudInit(ctx, requestCloudInit)
 
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 
-	b, err := json.Marshal(cloudinit)
+	b, err := json.Marshal(responseCloudInit)
 	if err != nil {
 		fmt.Println(err)
 	}
